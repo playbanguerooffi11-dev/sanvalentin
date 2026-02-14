@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para Ana Sofía 💖</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    height:100vh;
+    background: linear-gradient(135deg,#ff416c,#ff4b2b);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family: 'Segoe UI', sans-serif;
+    overflow:hidden;
+    color:white;
+    text-align:center;
+}
+
+.container{
+    background: rgba(0,0,0,0.6);
+    padding:40px;
+    border-radius:25px;
+    width:90%;
+    max-width:600px;
+    box-shadow:0 0 40px rgba(0,0,0,0.6);
+}
+
+h1{ font-size:36px; }
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    margin:10px;
+    transition:0.3s;
+}
+
+#yes{ background:#ff1744; color:white; }
+#no{ background:white; color:#ff1744; }
+
+.firework{
+    position:absolute;
+    width:8px;
+    height:8px;
+    background:yellow;
+    border-radius:50%;
+    animation: explode 1.2s ease-out forwards;
+}
+
+@keyframes explode{
+    0%{transform: scale(1); opacity:1;}
+    100%{transform: scale(20); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="main">
+    <h1>💖 Ana Sofía Mira 💖</h1>
+    <h2>¿Quieres ser mi San Valentín? 💘</h2>
+    <button id="yes">Sí, obvio 😍</button>
+    <button id="no">No 🙈</button>
+</div>
+
+<script>
+let yes = document.getElementById("yes");
+let no = document.getElementById("no");
+let size = 20;
+
+no.addEventListener("click", function(){
+    size += 15;
+    yes.style.fontSize = size + "px";
+    yes.style.padding = (size/2) + "px " + size + "px";
+    if(size > 180){ no.style.display = "none"; }
+});
+
+yes.addEventListener("click", function(){
+    document.getElementById("main").innerHTML = `
+        <h1>🔥 ¡Sabía que dirías que sí! 🔥</h1>
+        <p style="font-size:22px; margin-top:20px;">
+        Ana Sofía, eres la mujer que ilumina mi vida ✨  
+        Cada momento contigo es mágico e inolvidable 💖  
+        Te invito a una noche llena de amor, risas y recuerdos hermosos.  
+        Gracias por hacerme el hombre más feliz del mundo ❤️
+        </p>
+        <h2>Prepárate para nuestra cita especial 💕</h2>
+    `;
+    lanzarFuegos();
+});
+
+function lanzarFuegos(){
+    setInterval(function(){
+        let f = document.createElement("div");
+        f.classList.add("firework");
+        f.style.left = Math.random()*window.innerWidth + "px";
+        f.style.top = Math.random()*window.innerHeight + "px";
+        document.body.appendChild(f);
+        setTimeout(()=>{ f.remove(); },1200);
+    },200);
+}
+</script>
+
+</body>
+</html>
